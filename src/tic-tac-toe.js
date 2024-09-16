@@ -26,4 +26,28 @@ function boardFromString(s){
     return boardArray
 }
 
-export {generateBoard, boardFromString}
+function rowColToIndex(board, row, col){
+    let dimension = Math.sqrt(board.length);
+    let indx = row * dimension + (col)
+
+    return indx
+}
+
+function indexToRowCol(board, i){
+    let dimension = Math.sqrt(board.length);
+    let rowCol = {};
+    rowCol.row = Math.floor(i/dimension);
+    rowCol.col = i - rowCol.row*dimension;
+
+    return rowCol;
+}
+
+function setBoardCell(board, letter, row, col){
+    let boardCopy = board.slice();
+    let index = rowColToIndex(board, row, col);
+    boardCopy[index] = letter;
+
+    return boardCopy;
+}
+
+export {generateBoard, boardFromString, rowColToIndex, indexToRowCol, setBoardCell}
