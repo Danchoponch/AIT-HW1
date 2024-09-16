@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "homework01-danchoponch",
+  "version": "1.0.0",
+  "description": "Github username: Danchoponch (email: dz2307@nyu.edu) Homework #01 - Tic Tac Toe",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
