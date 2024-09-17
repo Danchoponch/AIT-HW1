@@ -59,7 +59,7 @@ function algebraicToRowCol(algebraicNotation){
         return undefined;
     }
     else{
-        const col = parseInt(result[0][1]) - 1;
+        const col = parseInt(result[0].slice(1)) - 1;
         const row = result[0][0].charCodeAt(0) - 65;
 
         return {"row": row, "col": col};
@@ -119,14 +119,22 @@ function isBoardFull(board){
 
 function isValidMove(board, algebraicNotation){
     const coordinates = algebraicToRowCol(algebraicNotation);
+    const dimension = Math.sqrt(board.length);
     if (coordinates === undefined){
         return false;
     }
 
-    const index = rowColToIndex(board, coordinates.row, coordinates.col);
+    //
 
-    if(board[index] === " "){
-        return true;
+    if(coordinates.row < dimension && coordinates.col < dimension){
+        const index = rowColToIndex(board, coordinates.row, coordinates.col);
+
+        if(board[index] === " "){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     else{
         return false;
