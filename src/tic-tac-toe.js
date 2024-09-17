@@ -11,31 +11,31 @@ function generateBoard(rows, cols, initialValue) {
 
 function boardFromString(s){
     if (Math.sqrt(s.length) % 1 !== 0){
-        return null
+        return null;
     }
 
-    let boardArray = [];
+    const boardArray = [];
     for (let i = 0; i < s.length; i++){
         if (s[i].charCodeAt(0) !== 32 && s[i].charCodeAt(0) !== 79 && s[i].charCodeAt(0) !== 88){
-            return null
+            return null;
         }
         else{
-            boardArray.push(s[i])
+            boardArray.push(s[i]);
         }
     }
-    return boardArray
+    return boardArray;
 }
 
 function rowColToIndex(board, row, col){
-    let dimension = Math.sqrt(board.length);
-    let indx = row * dimension + (col)
+    const dimension = Math.sqrt(board.length);
+    const indx = row * dimension + (col);
 
-    return indx
+    return indx;
 }
 
 function indexToRowCol(board, i){
-    let dimension = Math.sqrt(board.length);
-    let rowCol = {};
+    const dimension = Math.sqrt(board.length);
+    const rowCol = {};
     rowCol.row = Math.floor(i/dimension);
     rowCol.col = i - rowCol.row*dimension;
 
@@ -43,8 +43,8 @@ function indexToRowCol(board, i){
 }
 
 function setBoardCell(board, letter, row, col){
-    let boardCopy = board.slice();
-    let index = rowColToIndex(board, row, col);
+    const boardCopy = board.slice();
+    const index = rowColToIndex(board, row, col);
     boardCopy[index] = letter;
 
     return boardCopy;
@@ -55,20 +55,20 @@ function algebraicToRowCol(algebraicNotation){
 
     const result = algebraicNotation.match(reg);
 
-    if (result == null){
+    if (result === null){
         return undefined;
     }
     else{
-        let col = parseInt(result[0][1]) - 1;
-        let row = result[0][0].charCodeAt(0) - 65
+        const col = parseInt(result[0][1]) - 1;
+        const row = result[0][0].charCodeAt(0) - 65;
 
-        return {"row": row, "col": col}
+        return {"row": row, "col": col};
     }
 
 }
 
 function placeLetter(board, letter, algebraicNotation){
-    let coordinates = algebraicToRowCol(algebraicNotation);
+    const coordinates = algebraicToRowCol(algebraicNotation);
     return setBoardCell(board, letter, coordinates.row, coordinates.col);
 }
 
@@ -110,28 +110,28 @@ function getWinner(board){
 
 function isBoardFull(board){
     for(let i = 0; i < board.length; i++){
-        if(board[i] == ' '){
-            return false
+        if(board[i] === ' '){
+            return false;
         }
     }
     return true;
 }
 
 function isValidMove(board, algebraicNotation){
-    let coordinates = algebraicToRowCol(algebraicNotation)
-    if (coordinates == undefined){
-        return false
+    const coordinates = algebraicToRowCol(algebraicNotation);
+    if (coordinates === undefined){
+        return false;
     }
 
-    let index = rowColToIndex(board, coordinates.row, coordinates.col);
+    const index = rowColToIndex(board, coordinates.row, coordinates.col);
 
-    if(board[index] == " "){
+    if(board[index] === " "){
         return true;
     }
     else{
-        return false
+        return false;
     }
 }
 
 export {generateBoard, boardFromString, rowColToIndex, indexToRowCol, setBoardCell, algebraicToRowCol, placeLetter, getWinner,
-isBoardFull, isValidMove}
+isBoardFull, isValidMove};
